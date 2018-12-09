@@ -8,6 +8,8 @@
  *
  * @author Pedro
  */
+//This interface defines the complete interface to the printer for both students and technicians. 
+
 public interface ServicePrinter extends Printer
 {
 
@@ -25,6 +27,11 @@ public interface ServicePrinter extends Printer
 
     public final int PagesPerTonerCartridge = 500 ;
 
+    //Student Methods
+
+    public void print(Document doc){
+        Printer.printDocument(doc);
+    }
 
     // Technician methods
 

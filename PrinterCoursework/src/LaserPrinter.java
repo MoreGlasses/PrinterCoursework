@@ -9,16 +9,21 @@
  *
  * @author Pedro
  */
+
+import java.util.Scanner;
+
 public class LaserPrinter implements ServicePrinter{
     
     public Document doc;
     private String PrinterID = "";
-    private Integer PaperLevel = 10;
-    private Integer TonerLevel = 10;
+    private Integer PaperLevel = 250;
+    private Integer TonerLevel = 500;
     private Integer NumberDocumentsPrinted = 0;
+    private String LaserPrinterStatus = "";
     
     private String FullDescription = "[ PrinterID: " + PrinterID + ", Paper Level: " + PaperLevel.toString() + ", Toner Level: " + TonerLevel.toString() + ", Documents Printed: " + NumberDocumentsPrinted.toString() + " ]";
-    
+    Scanner reader = new Scanner(System.in);
+
     public LaserPrinter(Document Doc){
         this.doc = Doc;
         System.out.println(FullDescription); 
@@ -28,16 +33,41 @@ public class LaserPrinter implements ServicePrinter{
        
         //0 will be document pages
         if(PaperLevel > 0 && TonerLevel > 0){
-            System.out.println("Prints Document");
+            System.out.println("How many pages would you like to print?");
+            String input = reader.nextInt();
+
+            if(PaperLevel < input && TonerLevel < input){
+                System.out.println("An error as occurred. You tried to print " + input + " pages but the printer only has " + PaperLevel + " Paper Level and " + TonerLevel + " Toner Level.");
+            } else {
+                PaperLevel = PaperLevel - input;
+                TonerLevel = TonerLevel - input;
+                NumberDocumentsPrinted += 1;
+                System.out.println("Success!");
+            }
+            reader.close();
         } 
     }
     
     public void refillPaper(){
-        
+        if(PaperLevel > 200){
+            System.out.println("This printer cannot be refilled yet.");
+        } else {
+            PaperLevel += 50;
+        }
+    
     }
     
     public void replaceTonerCartridge(){
-        
+        if (TonerLevel <= 10){
+            TonerLevel == 500;
+            //wait 5 seconds before checking it can be replaced again
+        } else {
+            System.out.println("Toner Cartridge doesn't need to be replaced yet. Toner Level = " + TonerLevel);
+        }
+    }
+
+    public void printerStatus(){
+       System.out.println(LaserPrinterStatus.ToString());
     }
 
     @Override
