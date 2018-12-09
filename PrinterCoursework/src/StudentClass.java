@@ -1,6 +1,7 @@
+import java.lang.Thread;
 import java.lang.ThreadGroup;
 
-public class StudentClass extends Thread implements ServicePrinter
+public class StudentClass extends Thread implements Printer
 //This is threadable
 {
 
@@ -25,47 +26,9 @@ public class StudentClass extends Thread implements ServicePrinter
     }
 
 
-    //Interface Methods
     @Override
-    public void replaceTonerCartridge() {
-        throw new UnsupportedOperationException("Students don't replace toners"); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public void refillPaper() {
-        throw new UnsupportedOperationException("Students don't refill paper"); //To change body of generated methods, choose Tools | Templates.
-    }
-    //TODO: This needs to be rethinked
-    
     public void printDocument(Document document) {
         //When a print is issued a thread starts a request to the printer a print action
-        ServicePrinter.printDocument(document);
+        
     }
-
-    
-    public void print(Document doc) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-
-    
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 }

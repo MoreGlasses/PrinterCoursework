@@ -8,7 +8,7 @@
  *
  * @author Pedro
  */
-public interface Printer
+public interface Printer 
 {
 
     // print the "document"
