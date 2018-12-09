@@ -34,7 +34,7 @@ public class LaserPrinter implements ServicePrinter{
         //0 will be document pages
         if(PaperLevel > 0 && TonerLevel > 0){
             System.out.println("How many pages would you like to print?");
-            String input = reader.nextInt();
+            int input = reader.nextInt();
 
             if(PaperLevel < input && TonerLevel < input){
                 System.out.println("An error as occurred. You tried to print " + input + " pages but the printer only has " + PaperLevel + " Paper Level and " + TonerLevel + " Toner Level.");
@@ -59,7 +59,7 @@ public class LaserPrinter implements ServicePrinter{
     
     public void replaceTonerCartridge(){
         if (TonerLevel <= 10){
-            TonerLevel == 500;
+            TonerLevel = 500;
             //wait 5 seconds before checking it can be replaced again
         } else {
             System.out.println("Toner Cartridge doesn't need to be replaced yet. Toner Level = " + TonerLevel);
@@ -67,11 +67,16 @@ public class LaserPrinter implements ServicePrinter{
     }
 
     public void printerStatus(){
-       System.out.println(LaserPrinterStatus.ToString());
+       System.out.println(LaserPrinterStatus.toString());
     }
 
     @Override
     public void printDocument(Document document) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    
+    public void print(Document doc) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
    

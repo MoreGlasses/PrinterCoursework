@@ -22,6 +22,14 @@ class Document
         this.numberOfPages = length ;
     }
 
+    Document() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    Document(int studentID, String DocumentName, int PagesAmount) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
 
     public String getUserID( )        { return userID ; }
 

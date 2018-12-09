@@ -13,10 +13,8 @@
 public interface ServicePrinter extends Printer
 {
 
-    // from Printer:
-    //    public void printDocument( Document document ) ;
-
-    // Printer constants 
+    
+    public void printDocument( Document document ) ;
 
     public final int Full_Paper_Tray  = 250 ;
     public final int Full_Toner_Level = 500 ;
@@ -29,9 +27,9 @@ public interface ServicePrinter extends Printer
 
     //Student Methods
 
-    public void print(Document doc){
-        Printer.printDocument(doc);
-    }
+//    public void print(Document doc){
+//        Printer.printDocument(doc);
+//    }
 
     // Technician methods
 

@@ -9,7 +9,7 @@ public class StudentClass extends Thread implements ServicePrinter
     private Document studentDocument;
     private int studentID;
     private String studentName ="";
-    private ThreadGroup threadGroup = 0;
+    private ThreadGroup threadGroup;
     private String printerBeingUsed;
     
 
@@ -36,10 +36,15 @@ public class StudentClass extends Thread implements ServicePrinter
         throw new UnsupportedOperationException("Students don't refill paper"); //To change body of generated methods, choose Tools | Templates.
     }
     //TODO: This needs to be rethinked
+    
     public void printDocument(Document document) {
         //When a print is issued a thread starts a request to the printer a print action
-
         ServicePrinter.printDocument(document);
+    }
+
+    
+    public void print(Document doc) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
 
