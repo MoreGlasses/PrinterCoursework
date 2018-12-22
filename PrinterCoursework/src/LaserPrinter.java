@@ -27,34 +27,13 @@ public class LaserPrinter implements ServicePrinter{
     public LaserPrinter(Document Doc){
         this.doc = Doc;
         System.out.println(FullDescription); 
-    }
-    
-    public void printDocument(){
-       
-        //0 will be document pages
-        if(PaperLevel > 0 && TonerLevel > 0){
-            System.out.println("How many pages would you like to print?");
-            int input = reader.nextInt();
-
-            if(PaperLevel < input && TonerLevel < input){
-                System.out.println("An error as occurred. You tried to print " + input + " pages but the printer only has " + PaperLevel + " Paper Level and " + TonerLevel + " Toner Level.");
-            } else {
-                PaperLevel = PaperLevel - input;
-                TonerLevel = TonerLevel - input;
-                NumberDocumentsPrinted += 1;
-                System.out.println("Success!");
-            }
-            reader.close();
-        } 
-    }
-    
+    }    
     public void refillPaper(){
         if(PaperLevel > 200){
             System.out.println("This printer cannot be refilled yet.");
         } else {
             PaperLevel += 50;
         }
-    
     }
     
     public void replaceTonerCartridge(){
@@ -72,12 +51,20 @@ public class LaserPrinter implements ServicePrinter{
 
     @Override
     public void printDocument(Document document) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+                //0 will be document pages
+        if(PaperLevel > 0 && TonerLevel > 0){
+            System.out.println("How many pages would you like to print?");
+            int input = reader.nextInt();
 
-    
-    public void print(Document doc) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-   
+            if(PaperLevel < input && TonerLevel < input){
+                System.out.println("An error as occurred. You tried to print " + input + " pages but the printer only has " + PaperLevel + " Paper Level and " + TonerLevel + " Toner Level.");
+            } else {
+                PaperLevel = PaperLevel - input;
+                TonerLevel = TonerLevel - input;
+                NumberDocumentsPrinted += 1;
+                System.out.println("Success!");
+            }
+            reader.close();
+        } 
+    }   
 }

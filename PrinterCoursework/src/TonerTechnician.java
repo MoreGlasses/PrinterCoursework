@@ -20,14 +20,19 @@ import java.lang.ThreadGroup;
 public class TonerTechnician extends Thread implements ServicePrinter {    
     
     //Properties
-    private int techID;
+    private int techId;
     private String techName;
-    private ThreadGroup threadGroup;
-    private Printer printer;
+    private ThreadGroup assignedGroup;
+    private LaserPrinter AssignedPrinter;
     
     
-    public TonerTechnician(){
-        //cenas
+    public TonerTechnician(String TechName,int TechId, ThreadGroup techGroup, LaserPrinter techPrinter){
+        
+        techName = TechName;
+        techId = TechId;
+        assignedGroup = techGroup;
+        AssignedPrinter = techPrinter;
+        
     }
 
     @Override
@@ -36,14 +41,15 @@ public class TonerTechnician extends Thread implements ServicePrinter {
     }
 
     @Override
-    public void replaceTonerCartridge() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+     public void replaceTonerCartridge() {
+        AssignedPrinter.replaceTonerCartridge();
     }
 
     @Override
     public void refillPaper() {
-        
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+  
     
     
     

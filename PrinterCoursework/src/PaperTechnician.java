@@ -1,25 +1,27 @@
+
 import java.lang.Thread;
 import java.lang.ThreadGroup;
 
-public class PaperTechnician extends Thread implements ServicePrinter {    
-    
+public class PaperTechnician extends Thread implements ServicePrinter {
+
     //Properties
-    private int techID;
+    private int techId;
     private String techName;
-    private ThreadGroup threadGroup;
-    private Printer printer;
-    
-    
-    public PaperTechnician(){
-        //cenas
+    private ThreadGroup assignedGroup;
+    private LaserPrinter AssignedPrinter;
+
+    public PaperTechnician(String TechName, int TechId, ThreadGroup techGroup, LaserPrinter techPrinter) {
+
+        techName = TechName;
+        techId = TechId;
+        assignedGroup = techGroup;
+        AssignedPrinter = techPrinter;
+
     }
-
-
-
 
     @Override
     public void refillPaper() {
-        //Refill the paper
+        AssignedPrinter.refillPaper();
     }
 
     @Override
@@ -31,7 +33,26 @@ public class PaperTechnician extends Thread implements ServicePrinter {
     public void printDocument(Document document) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-    
-    
-    
+
+    @Override
+    public void run() {
+        /*
+         Attempt to refill the printer's paper trays three times, using the printer's
+         refillPaper( ) method.
+         He/she should "sleep" for a random amount of time between each attempt to refill the
+         paper.
+         When he/she has finished trying to refill the paper, print out a message.     
+         */
+        for (int i = 0; i < 3; i++ ) {
+            try
+            {
+                refillPaper();
+            } 
+            catch (Exception e) 
+            {
+                
+            }
+        }
+    }
+
 }

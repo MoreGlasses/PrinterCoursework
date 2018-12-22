@@ -10,12 +10,12 @@
  */
 class Document
 {
-    private final String userID ;  
+    private final int userID ;  
     private final String documentName ;  
     private final int    numberOfPages ;
 
 
-    public Document( String UID, String name, int length )
+    public Document( int UID, String name, int length )
     {
         this.userID        = UID ;
         this.documentName  = name ;
@@ -26,12 +26,7 @@ class Document
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    Document(int studentID, String DocumentName, int PagesAmount) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-
-    public String getUserID( )        { return userID ; }
+    public String getUserID( )        { return ""+userID; }
 
     public String getDocumentName( )  { return documentName ; }
 
