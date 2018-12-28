@@ -22,9 +22,9 @@ class Document
         this.numberOfPages = length ;
     }
 
-    Document() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+//    Document() {
+//        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+//    }
 
     public String getUserID( )        { return ""+userID; }
 

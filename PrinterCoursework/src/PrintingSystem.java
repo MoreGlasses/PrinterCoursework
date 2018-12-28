@@ -21,7 +21,7 @@ public class PrintingSystem {
 
     public static void main(String args[])throws InterruptedException
     {
-        LaserPrinter lp = new LaserPrinter(new Document());
+        LaserPrinter lp = new LaserPrinter();
         ThreadGroup StudentGroup = new ThreadGroup("Student Group");
         ThreadGroup TechGroup = new ThreadGroup("Technician Group");
 
@@ -69,6 +69,9 @@ public class PrintingSystem {
         PaperTechnician PaperTech1 = new PaperTechnician("Pedro", 5, TechGroup, lp);
         TonerTechnician TonerTech1 = new TonerTechnician("Tio Miguel", 6, TechGroup, lp);
         Student1.run();
+        Student2.run();
+        Student3.run();
+        Student4.run();
     }
 
 }

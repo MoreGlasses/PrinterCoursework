@@ -13,7 +13,7 @@
 public interface ServicePrinter extends Printer
 {
 
-    public LaserPrinter AssignedPrinter = new LaserPrinter(new Document()) ;
+    public LaserPrinter AssignedPrinter = new LaserPrinter() ;
     public final int Full_Paper_Tray  = 250 ;
     public final int Full_Toner_Level = 500 ;
 

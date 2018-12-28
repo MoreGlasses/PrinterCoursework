@@ -24,9 +24,7 @@ public class LaserPrinter implements ServicePrinter{
     private String FullDescription = "[ PrinterID: " + PrinterID + ", Paper Level: " + PaperLevel.toString() + ", Toner Level: " + TonerLevel.toString() + ", Documents Printed: " + NumberDocumentsPrinted.toString() + " ]";
     Scanner reader = new Scanner(System.in);
 
-    public LaserPrinter(Document Doc){
-        this.doc = Doc;
-        System.out.println(FullDescription); 
+    public LaserPrinter(){
     }    
     public void refillPaper(){
         if(PaperLevel > 200){
@@ -53,8 +51,7 @@ public class LaserPrinter implements ServicePrinter{
     public void printDocument(Document document) {
                 //0 will be document pages
         if(PaperLevel > 0 && TonerLevel > 0){
-            System.out.println("How many pages would you like to print?");
-            int input = reader.nextInt();
+            int input = document.getNumberOfPages();
 
             if(PaperLevel < input && TonerLevel < input){
                 System.out.println("An error as occurred. You tried to print " + input + " pages but the printer only has " + PaperLevel + " Paper Level and " + TonerLevel + " Toner Level.");
@@ -62,9 +59,11 @@ public class LaserPrinter implements ServicePrinter{
                 PaperLevel = PaperLevel - input;
                 TonerLevel = TonerLevel - input;
                 NumberDocumentsPrinted += 1;
-                System.out.println("Success!");
+                System.out.println(document.getDocumentName());
+                System.out.println("TonerLevel = " + TonerLevel);
+                System.out.println("PaperLevel = " + PaperLevel);
             }
-            reader.close();
+            
         } 
     }   
 }

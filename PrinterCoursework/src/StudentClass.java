@@ -43,10 +43,14 @@ public class StudentClass extends Thread implements Printer //This is threadable
             Random r = new Random();
             printDocument(d);
             try{
-            sleep(r.nextInt(10));
+            sleep(r.nextInt(10)*1000);
             }
-            catch(Exception e){}
+            catch(Exception e){
+                throw new UnsupportedOperationException("Not supported yet.");
         }
+            
         System.out.println("Printing done for student "+studentName);
+        System.out.println("");
+    }
     }
 }
