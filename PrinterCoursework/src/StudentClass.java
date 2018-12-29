@@ -4,6 +4,7 @@ import java.lang.ThreadGroup;
 import java.util.List;
 import java.util.ArrayList;
 import java.util.Random;
+import java.util.concurrent.Semaphore;
 
 public class StudentClass extends Thread implements Printer //This is threadable
 {
@@ -15,6 +16,7 @@ public class StudentClass extends Thread implements Printer //This is threadable
     private String studentName = "";
     private ThreadGroup threadGroup;
     private LaserPrinter AssignedPrinter;
+    private static Semaphore semaphore = new Semaphore(1);
 
     public StudentClass(int ID, String Name, ThreadGroup ThreadGroup, LaserPrinter studentPrinter, List<Document> StudentDocs) {
         studentID = ID;
@@ -30,27 +32,69 @@ public class StudentClass extends Thread implements Printer //This is threadable
         AssignedPrinter.printDocument(document);
     }
 
-    @Override
     public void run() {
-        /*
-         Create and print five documents with different lengths and names.
-         He/she should "sleep" for a random amount of time between each printing request.
-         When he/she has finished printing, print out a message. 
-         */
 
+        try {
 
-        for (Document d : studentDocuments) {
-            Random r = new Random();
-            printDocument(d);
-            try{
-            sleep(r.nextInt(10)*1000);
+            System.out.println(studentName + " : acquiring lock...");
+            System.out.println(studentName + " : available Semaphore permits now: "
+                    + semaphore.availablePermits());
+
+            semaphore.acquire();
+            System.out.println(studentName + " : got the permit!");
+
+            try {
+
+                for (int i = 1; i <= 5; i++) {
+
+                    System.out.println(studentName + " : is performing operation " + i
+                            + ", available Semaphore permits : "
+                            + semaphore.availablePermits());
+
+                    // sleep 1 second
+                    Thread.sleep(1000);
+
+                }
+
+            } finally {
+
+                // calling release() after a successful acquire()
+                System.out.println(studentName + " : releasing lock...");
+                semaphore.release();
+                System.out.println(studentName + " : available Semaphore permits now: "
+                        + semaphore.availablePermits());
+
             }
-            catch(Exception e){
-                throw new UnsupportedOperationException("Not supported yet.");
+
+        } catch (InterruptedException e) {
+
+            e.printStackTrace();
+
         }
-            
-        System.out.println("Printing done for student "+studentName);
-        System.out.println("");
+
     }
-    }
+
+//    @Override
+//    public void run() {
+//        /*
+//         Create and print five documents with different lengths and names.
+//         He/she should "sleep" for a random amount of time between each printing request.
+//         When he/she has finished printing, print out a message. 
+//         */
+//
+//
+//        for (Document d : studentDocuments) {
+//            Random r = new Random();
+//            printDocument(d);
+//            try{
+//            sleep(r.nextInt(10)*1000);
+//            }
+//            catch(Exception e){
+//                throw new UnsupportedOperationException("Not supported yet.");
+//        }
+//            
+//        System.out.println("Printing done for student "+studentName);
+//        System.out.println("");
+//    }
+//    }
 }

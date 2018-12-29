@@ -68,10 +68,12 @@ public class PrintingSystem {
 
         PaperTechnician PaperTech1 = new PaperTechnician("Pedro", 5, TechGroup, lp);
         TonerTechnician TonerTech1 = new TonerTechnician("Tio Miguel", 6, TechGroup, lp);
-        Student1.run();
-        Student2.run();
-        Student3.run();
-        Student4.run();
+        
+        //A semaphore that only has space for 1 process
+        Student1.start();
+        Student2.start();
+        Student3.start();
+        Student4.start();
     }
 
 }
