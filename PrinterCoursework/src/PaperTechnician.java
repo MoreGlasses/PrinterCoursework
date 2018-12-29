@@ -13,7 +13,7 @@ public class PaperTechnician extends Thread implements ServicePrinter {
     private LaserPrinter AssignedPrinter;
     private static Semaphore semaphore;
 
-    public PaperTechnician(String TechName, int TechId, ThreadGroup techGroup, LaserPrinter techPrinter,Semaphore sem) {
+    public PaperTechnician(String TechName, int TechId, ThreadGroup techGroup, LaserPrinter techPrinter, Semaphore sem) {
 
         techName = TechName;
         techId = TechId;
@@ -46,16 +46,15 @@ public class PaperTechnician extends Thread implements ServicePrinter {
          paper.
          When he/she has finished trying to refill the paper, print out a message.     
          */
-        Random r = new Random();
-        for (int i = 0; i < 3; i++ ) {
-            try
-            {
-                refillPaper();
-                sleep(r.nextInt(10)*1000);
-            } 
-            catch (Exception e) 
-            {
-                
+        while (true) {
+            Random r = new Random();
+            for (int i = 0; i < 3; i++) {
+                try {
+                    refillPaper();
+                    sleep(r.nextInt(5) * 1000);
+                } catch (Exception e) {
+
+                }
             }
         }
     }

@@ -15,7 +15,9 @@
 // three times, using the printer's replaceTonerCartridge( ) method. 
 
 import java.lang.Thread;
+import static java.lang.Thread.sleep;
 import java.lang.ThreadGroup;
+import java.util.Random;
 import java.util.concurrent.Semaphore;
 
 public class TonerTechnician extends Thread implements ServicePrinter {    
@@ -51,7 +53,27 @@ public class TonerTechnician extends Thread implements ServicePrinter {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
   
-    
+        @Override
+    public void run() {
+        /*
+         Attempt to refill the printer's paper trays three times, using the printer's
+         refillPaper( ) method.
+         He/she should "sleep" for a random amount of time between each attempt to refill the
+         paper.
+         When he/she has finished trying to refill the paper, print out a message.     
+         */
+        while (true) {
+            Random r = new Random();
+            for (int i = 0; i < 3; i++) {
+                try {
+                    replaceTonerCartridge();
+                    sleep(r.nextInt(5) * 1000);
+                } catch (Exception e) {
+
+                }
+            }
+        }
+    }
     
     
 }
