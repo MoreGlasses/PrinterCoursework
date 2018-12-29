@@ -1,6 +1,7 @@
 
 import java.lang.Thread;
 import java.lang.ThreadGroup;
+import java.util.Random;
 import java.util.concurrent.Semaphore;
 
 public class PaperTechnician extends Thread implements ServicePrinter {
@@ -45,10 +46,12 @@ public class PaperTechnician extends Thread implements ServicePrinter {
          paper.
          When he/she has finished trying to refill the paper, print out a message.     
          */
+        Random r = new Random();
         for (int i = 0; i < 3; i++ ) {
             try
             {
                 refillPaper();
+                sleep(r.nextInt(10)*1000);
             } 
             catch (Exception e) 
             {

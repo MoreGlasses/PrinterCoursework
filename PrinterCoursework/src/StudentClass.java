@@ -19,7 +19,7 @@ public class StudentClass extends Thread implements Printer //This is threadable
     private LaserPrinter AssignedPrinter;
     private static Semaphore semaphore;
 
-    public StudentClass(int ID, String Name, ThreadGroup ThreadGroup, LaserPrinter studentPrinter,Semaphore sem, Queue<Document> StudentDocs) {
+    public StudentClass(int ID, String Name, ThreadGroup ThreadGroup, LaserPrinter studentPrinter, Semaphore sem, Queue<Document> StudentDocs) {
         studentID = ID;
         studentName = Name;
         threadGroup = ThreadGroup;
@@ -38,33 +38,32 @@ public class StudentClass extends Thread implements Printer //This is threadable
     public void run() {
 
         try {
-
-            System.out.println(studentName + " : acquiring lock...");
-            System.out.println(studentName + " : available Semaphore permits now: "
-                    + semaphore.availablePermits());
-
-            semaphore.acquire();
-            System.out.println(studentName + " : got the permit!");
-
-            try {
-                Random r = new Random();
-                    printDocument(studentDocuments.remove());
-                    System.out.println(studentName + " : is printing a document"
-                            + ", available Semaphore permits : "
-                            + semaphore.availablePermits());
-
-                    // sleep 1 second
-                    sleep(r.nextInt(10)*1000);
-
-
-            } finally {
-
-                // calling release() after a successful acquire()
-                System.out.println(studentName + " : releasing lock...");
-                semaphore.release();
+            while (!studentDocuments.isEmpty()) {
+                System.out.println(studentName + " : acquiring permit...");
                 System.out.println(studentName + " : available Semaphore permits now: "
                         + semaphore.availablePermits());
 
+                semaphore.acquire();
+                System.out.println(studentName + " : got the permit!");
+
+                try {
+                    Random r = new Random();
+                    System.out.println(studentName + " : is printing " + studentDocuments.element().getDocumentName()
+                            + ", available Semaphore permits : "
+                            + semaphore.availablePermits());
+
+                    printDocument(studentDocuments.remove());
+                    sleep(r.nextInt(5) * 1000);
+
+                } finally {
+
+                    // calling release() after a successful acquire()
+                    System.out.println(studentName + " : releasing lock...");
+                    semaphore.release();
+                    System.out.println(studentName + " : available Semaphore permits now: "
+                            + semaphore.availablePermits());
+
+                }
             }
 
         } catch (InterruptedException e) {
@@ -72,7 +71,6 @@ public class StudentClass extends Thread implements Printer //This is threadable
             e.printStackTrace();
 
         }
-
     }
 
 //    @Override
