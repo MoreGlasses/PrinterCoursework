@@ -55,23 +55,40 @@ public class TonerTechnician extends Thread implements ServicePrinter {
   
         @Override
     public void run() {
-        /*
-         Attempt to refill the printer's paper trays three times, using the printer's
-         refillPaper( ) method.
-         He/she should "sleep" for a random amount of time between each attempt to refill the
-         paper.
-         When he/she has finished trying to refill the paper, print out a message.     
-         */
-        while (true) {
-            Random r = new Random();
+
+        try {
             for (int i = 0; i < 3; i++) {
+                System.out.println(techName + " : acquiring permit...");
+                System.out.println(techName + " : available Semaphore permits now: "
+                        + semaphore.availablePermits());
+
+                semaphore.acquire();
+                System.out.println(techName + " : got the permit!");
+
                 try {
+                    Random r = new Random();
+                    System.out.println(techName + " : is working "
+                            + ", available Semaphore permits : "
+                            + semaphore.availablePermits());
+
                     replaceTonerCartridge();
                     sleep(r.nextInt(5) * 1000);
-                } catch (Exception e) {
+
+                } finally {
+
+                    // calling release() after a successful acquire()
+                    System.out.println(techName + " : releasing lock...");
+                    semaphore.release();
+                    System.out.println(techName + " : available Semaphore permits now: "
+                            + semaphore.availablePermits());
 
                 }
             }
+
+        } catch (InterruptedException e) {
+
+            e.printStackTrace();
+
         }
     }
     
