@@ -5,25 +5,28 @@ import java.util.List;
 import java.util.ArrayList;
 import java.util.Random;
 import java.util.concurrent.Semaphore;
+import java.util.Queue;
 
 public class StudentClass extends Thread implements Printer //This is threadable
 {
 
     //Use the Document class.
     //Represent a document that students request the printer to be printed.
-    private List<Document> studentDocuments;
+    private Queue<Document> studentDocuments;
     private int studentID;
     private String studentName = "";
     private ThreadGroup threadGroup;
     private LaserPrinter AssignedPrinter;
-    private static Semaphore semaphore = new Semaphore(1);
+    private static Semaphore semaphore;
 
-    public StudentClass(int ID, String Name, ThreadGroup ThreadGroup, LaserPrinter studentPrinter, List<Document> StudentDocs) {
+    public StudentClass(int ID, String Name, ThreadGroup ThreadGroup, LaserPrinter studentPrinter,Semaphore sem, Queue<Document> StudentDocs) {
         studentID = ID;
         studentName = Name;
         threadGroup = ThreadGroup;
         AssignedPrinter = studentPrinter;
+        semaphore = sem;
         studentDocuments = StudentDocs;
+        //
     }
 
     @Override

@@ -1,6 +1,7 @@
 
 import java.lang.Thread;
 import java.lang.ThreadGroup;
+import java.util.concurrent.Semaphore;
 
 public class PaperTechnician extends Thread implements ServicePrinter {
 
@@ -9,14 +10,15 @@ public class PaperTechnician extends Thread implements ServicePrinter {
     private String techName;
     private ThreadGroup assignedGroup;
     private LaserPrinter AssignedPrinter;
+    private static Semaphore semaphore;
 
-    public PaperTechnician(String TechName, int TechId, ThreadGroup techGroup, LaserPrinter techPrinter) {
+    public PaperTechnician(String TechName, int TechId, ThreadGroup techGroup, LaserPrinter techPrinter,Semaphore sem) {
 
         techName = TechName;
         techId = TechId;
         assignedGroup = techGroup;
         AssignedPrinter = techPrinter;
-
+        semaphore = sem;
     }
 
     @Override
