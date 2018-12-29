@@ -47,17 +47,15 @@ public class StudentClass extends Thread implements Printer //This is threadable
             System.out.println(studentName + " : got the permit!");
 
             try {
-
-                for (int i = 1; i <= 5; i++) {
-
-                    System.out.println(studentName + " : is performing operation " + i
+                Random r = new Random();
+                    printDocument(studentDocuments.remove());
+                    System.out.println(studentName + " : is printing a document"
                             + ", available Semaphore permits : "
                             + semaphore.availablePermits());
 
                     // sleep 1 second
-                    Thread.sleep(1000);
+                    sleep(r.nextInt(10)*1000);
 
-                }
 
             } finally {
 
