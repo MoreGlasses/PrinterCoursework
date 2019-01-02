@@ -31,4 +31,6 @@ public interface ServicePrinter extends Printer
 
     public void refillPaper( ) ;
     
+
+    
 } // ServicePrinter

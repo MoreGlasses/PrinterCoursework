@@ -72,7 +72,7 @@ public class TonerTechnician extends Thread implements ServicePrinter {
                             + semaphore.availablePermits());
 
                     replaceTonerCartridge();
-                    sleep(r.nextInt(5) * 1000);
+                    sleep(r.nextInt(10) * 1000);
 
                 } finally {
 

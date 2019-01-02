@@ -69,8 +69,8 @@ public class PrintingSystem {
             }
         });
 
-        PaperTechnician PaperTech1 = new PaperTechnician("Pedro", 5, TechGroup, lp, semaphore);
-        TonerTechnician TonerTech1 = new TonerTechnician("Tio Miguel", 6, TechGroup, lp, semaphore);
+        PaperTechnician PaperTech1 = new PaperTechnician("Paper Man", 5, TechGroup, lp, semaphore);
+        TonerTechnician TonerTech1 = new TonerTechnician("Toner Man", 6, TechGroup, lp, semaphore);
         
         //Student Thread stops after only 1 print
             Student1.start();

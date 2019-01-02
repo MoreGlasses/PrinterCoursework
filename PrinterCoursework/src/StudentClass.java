@@ -39,29 +39,34 @@ public class StudentClass extends Thread implements Printer //This is threadable
 
         try {
             while (!studentDocuments.isEmpty()) {
-                System.out.println(studentName + " : acquiring permit...");
-                System.out.println(studentName + " : available Semaphore permits now: "
-                        + semaphore.availablePermits());
+                System.out.println(studentName + " : requesting Printer access");
+//                System.out.println(studentName + " : available Semaphore permits now: "
+//                        + semaphore.availablePermits());
 
                 semaphore.acquire();
-                System.out.println(studentName + " : got the permit!");
+                System.out.println(studentName + " : has the Printer access!");
 
                 try {
                     Random r = new Random();
-                    System.out.println(studentName + " : is printing " + studentDocuments.element().getDocumentName()
-                            + ", available Semaphore permits : "
-                            + semaphore.availablePermits());
-
-                    printDocument(studentDocuments.remove());
-                    sleep(r.nextInt(5) * 1000);
+                    System.out.println(studentName + " : is printing " + studentDocuments.element().getDocumentName() + " that has " + studentDocuments.element().getNumberOfPages() + " number of pages");
+//                    + ", available Semaphore permits : "
+//                            + semaphore.availablePermits());
+                    if(AssignedPrinter.getTonerLevel() < studentDocuments.element().getNumberOfPages() || AssignedPrinter.getPaperLevel() < studentDocuments.element().getNumberOfPages()){
+                        System.out.println("Not enough Toner Level or Paper Level to print document " + studentDocuments.element().getDocumentName());
+                        sleep(r.nextInt(10) * 1000);
+                    } else {
+                        printDocument(studentDocuments.remove());
+                        sleep(r.nextInt(10) * 1000);
+                    }
+                    
 
                 } finally {
 
                     // calling release() after a successful acquire()
                     System.out.println(studentName + " : releasing lock...");
                     semaphore.release();
-                    System.out.println(studentName + " : available Semaphore permits now: "
-                            + semaphore.availablePermits());
+//                    System.out.println(studentName + " : available Semaphore permits now: "
+//                            + semaphore.availablePermits());
 
                 }
             }
