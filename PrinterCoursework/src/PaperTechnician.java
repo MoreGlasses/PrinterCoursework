@@ -42,29 +42,29 @@ public class PaperTechnician extends Thread implements ServicePrinter {
 
         try {
             for (int i = 0; i < 3; i++) {
-                System.out.println(techName + " : acquiring permit...");
-                System.out.println(techName + " : available Semaphore permits now: "
-                        + semaphore.availablePermits());
+                System.out.println(techName + " : requesting Printer access");
+//                System.out.println(techName + " : available Semaphore permits now: "
+//                        + semaphore.availablePermits());
 
                 semaphore.acquire();
-                System.out.println(techName + " : got the permit!");
+                System.out.println(techName + " : has the Printer access!");
 
                 try {
                     Random r = new Random();
-                    System.out.println(techName + " : is working "
-                            + ", available Semaphore permits : "
-                            + semaphore.availablePermits());
+                    System.out.println(techName + " : is working!");
+//                            + ", available Semaphore permits : "
+//                            + semaphore.availablePermits());
 
                     refillPaper();
-                    sleep(r.nextInt(10) * 1000);
+                    sleep(r.nextInt(5) * 1000);
 
                 } finally {
 
                     // calling release() after a successful acquire()
                     System.out.println(techName + " : releasing lock...");
                     semaphore.release();
-                    System.out.println(techName + " : available Semaphore permits now: "
-                            + semaphore.availablePermits());
+//                    System.out.println(techName + " : available Semaphore permits now: "
+//                            + semaphore.availablePermits());
 
                 }
             }

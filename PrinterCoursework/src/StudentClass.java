@@ -52,9 +52,10 @@ public class StudentClass extends Thread implements Printer //This is threadable
 //                    + ", available Semaphore permits : "
 //                            + semaphore.availablePermits());
                     if(AssignedPrinter.getTonerLevel() < studentDocuments.element().getNumberOfPages() || AssignedPrinter.getPaperLevel() < studentDocuments.element().getNumberOfPages()){
-                        System.out.println("Not enough Toner Level or Paper Level to print document " + studentDocuments.element().getDocumentName());
+                        System.out.println("Not enough Toner Level or Paper Level to print Document " + studentDocuments.element().getDocumentName());
                         sleep(r.nextInt(10) * 1000);
                     } else {
+                        System.out.println(studentName + " has printed Document " + studentDocuments.element().getDocumentName());
                         printDocument(studentDocuments.remove());
                         sleep(r.nextInt(10) * 1000);
                     }

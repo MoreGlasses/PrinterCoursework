@@ -16,8 +16,8 @@ public class LaserPrinter implements ServicePrinter{
     
     public Document doc;
     private String PrinterID = "";
-    private Integer PaperLevel = 60;
-    private Integer TonerLevel = 5;
+    private Integer PaperLevel = 50;
+    private Integer TonerLevel = 100;
     private Integer NumberDocumentsPrinted = 0;
     private String LaserPrinterStatus = "";
     
@@ -37,7 +37,7 @@ public class LaserPrinter implements ServicePrinter{
     }
     
     public void refillPaper(){
-        if(PaperLevel > 50){
+        if(PaperLevel > 200){
             System.out.println("This printer cannot be refilled yet.");
         } else {
             PaperLevel += 50;
