@@ -69,9 +69,9 @@ public class LaserPrinter implements ServicePrinter{
                 PaperLevel = PaperLevel - input;
                 TonerLevel = TonerLevel - input;
                 NumberDocumentsPrinted += 1;
-                System.out.println(document.getDocumentName());
                 System.out.println("TonerLevel = " + TonerLevel);
                 System.out.println("PaperLevel = " + PaperLevel);
+                System.out.println("");
             }
             
         } 

@@ -67,12 +67,13 @@ public class TonerTechnician extends Thread implements ServicePrinter {
 
                 try {
                     Random r = new Random();
-                    System.out.println(techName + " : is working!");
+                    System.out.println(techName + " : is attempting to refill the Toner!");
 //                            + ", available Semaphore permits : "
 //                            + semaphore.availablePermits());
 
                     replaceTonerCartridge();
-                    sleep(r.nextInt(5) * 1000);
+                    System.out.println("");
+                    sleep(5);
                     
                 } finally {
 
@@ -84,7 +85,7 @@ public class TonerTechnician extends Thread implements ServicePrinter {
 
                 }
             }
-
+            System.out.println("The Toner Technician has refilled the Toner Cartridge and is heading home for the day.");
         } catch (InterruptedException e) {
 
             e.printStackTrace();

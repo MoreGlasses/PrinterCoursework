@@ -40,17 +40,14 @@ public class StudentClass extends Thread implements Printer //This is threadable
         try {
             while (!studentDocuments.isEmpty()) {
                 System.out.println(studentName + " : requesting Printer access");
-//                System.out.println(studentName + " : available Semaphore permits now: "
-//                        + semaphore.availablePermits());
-
                 semaphore.acquire();
                 System.out.println(studentName + " : has the Printer access!");
+                System.out.println("");
 
                 try {
                     Random r = new Random();
                     System.out.println(studentName + " : is printing " + studentDocuments.element().getDocumentName() + " that has " + studentDocuments.element().getNumberOfPages() + " number of pages");
-//                    + ", available Semaphore permits : "
-//                            + semaphore.availablePermits());
+
                     if(AssignedPrinter.getTonerLevel() < studentDocuments.element().getNumberOfPages() || AssignedPrinter.getPaperLevel() < studentDocuments.element().getNumberOfPages()){
                         System.out.println("Not enough Toner Level or Paper Level to print Document " + studentDocuments.element().getDocumentName());
                         sleep(r.nextInt(10) * 1000);
@@ -63,14 +60,13 @@ public class StudentClass extends Thread implements Printer //This is threadable
 
                 } finally {
 
-                    // calling release() after a successful acquire()
+
                     System.out.println(studentName + " : releasing lock...");
                     semaphore.release();
-//                    System.out.println(studentName + " : available Semaphore permits now: "
-//                            + semaphore.availablePermits());
 
                 }
             }
+            System.out.println(studentName + " has finished printing.");
 
         } catch (InterruptedException e) {
 

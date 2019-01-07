@@ -51,12 +51,13 @@ public class PaperTechnician extends Thread implements ServicePrinter {
 
                 try {
                     Random r = new Random();
-                    System.out.println(techName + " : is working!");
+                    System.out.println(techName + " : is attempting to refill the paper!");
 //                            + ", available Semaphore permits : "
 //                            + semaphore.availablePermits());
 
                     refillPaper();
-                    sleep(r.nextInt(5) * 1000);
+                    System.out.println("");
+                    sleep(5);
 
                 } finally {
 
@@ -68,7 +69,7 @@ public class PaperTechnician extends Thread implements ServicePrinter {
 
                 }
             }
-
+            System.out.println("The Paper Technician has refilled the Paper Sheets and is heading home for the day.");
         } catch (InterruptedException e) {
 
             e.printStackTrace();
